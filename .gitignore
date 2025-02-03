@@ -1,0 +1,15 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment directory
+venv/
+
+# Temporary files
+*.log
+*.bak
+
+# Operating system files
+.DS_Store
+Thumbs.db
