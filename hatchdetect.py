@@ -77,7 +77,7 @@ def check_for_pet():
             custom_config = r'--oem 1 --psm 6'
             text = pytesseract.image_to_string(processed_image, config=custom_config)
 
-            if "Pet" in text:
+            if "Huge" in text:
                 print("👀 'Pet' found in text!")
 
                 with tempfile.NamedTemporaryFile(delete=False, suffix='.png') as tmpfile:
