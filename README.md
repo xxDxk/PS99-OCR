@@ -10,7 +10,7 @@ This is a Python script designed to monitor real-time **Pet Hatch** events in PS
 
 ### Requirements:
 
-**DOWNLOAD AND ADD TO SYSTEM PATH**: https://github.com/tesseract-ocr/tesseract
+**DOWNLOAD AND ADD TO SYSTEM PATH**: https://github.com/tesseract-ocr/tesseract ([Latest](https://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe))
 
 To run the script, you'll need the following Python libraries:
 - Pillow
