@@ -22,3 +22,4 @@ To run the script, you'll need the following Python libraries:
 You can install these dependencies using the following command:
 ```bash
 pip install Pillow pytesseract requests opencv-python numpy
+![ocr example](https://github.com/user-attachments/assets/4656955a-c5db-40f7-9f7e-3c36d74283db)
