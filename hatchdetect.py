@@ -8,7 +8,7 @@ import numpy as np
 import json
 import tempfile
 
-WEBHOOK_URL = "https://discord.com/api/webhooks/1335972305230368878/mLQKlBUnDy7QKbA-7Hs6xFj2ga5kGx9PemeVNLTsRENtIjX0D8hHXmGpv8iQswZBLXfb" # enter webhook link here
+WEBHOOK_URL = "WEBHOOK_LINK" # enter webhook link here
 DISCORD_ROLE_ID = "ENTER_ID" # enter a role ID / default
 DISCORD_USER_ID = "ENTER_ID" # enter a user ID / overrides ROLE
 
