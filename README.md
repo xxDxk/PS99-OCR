@@ -2,6 +2,8 @@
 
 This is a Python script designed to monitor real-time **Pet Hatch** events in PS99, capture screenshots, and send notifications to a Discord channel using webhooks. It uses **OCR (Optical Character Recognition)** to detect the word **"Huge"** in the screenshots and sends a notification along with the image to a Discord server.
 
+![ocr example](https://github.com/user-attachments/assets/4656955a-c5db-40f7-9f7e-3c36d74283db)
+
 ### Features:
 - **Real-time monitoring**: Continuously watches for pet hatches in PS99. (every 5 sec)
 - **OCR processing**: Detects the word "Huge" using image processing and OCR.
@@ -22,4 +24,3 @@ To run the script, you'll need the following Python libraries:
 You can install these dependencies using the following command:
 ```bash
 pip install Pillow pytesseract requests opencv-python numpy
-![ocr example](https://github.com/user-attachments/assets/4656955a-c5db-40f7-9f7e-3c36d74283db)
