@@ -4,6 +4,14 @@ This is a Python script designed to monitor real-time **Pet Hatch** events in PS
 
 ![ocr example](https://github.com/user-attachments/assets/4656955a-c5db-40f7-9f7e-3c36d74283db)
 
+*image is an example of the embed and functionality*
+
+*please ensure you close chat and do not have the word "Huge" anywhere on your screen when you start the program*
+
+*OCR relies on imaage clarity, so if your device runs lower graphics, there is a chance it may not work*
+
+*i am currently training an OCR model specifically for the PS99 font, until then there may be the occasional hatch that isn't caught by the program*
+
 ### Features:
 - **Real-time monitoring**: Continuously watches for pet hatches in PS99. (every 5 sec)
 - **OCR processing**: Detects the word "Huge" using image processing and OCR.
