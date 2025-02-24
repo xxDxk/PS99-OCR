@@ -34,7 +34,11 @@ def search_rap_api(base_name, sh, pt):
         if data.get("status") == "ok":
             for item in data.get("data", []):
                 if item.get("configData", {}).get("id") == base_name:
-                    if item.get("configData", {}).get("pt") == pt and item.get("configData", {}).get("sh") == sh:
+                    # For normal pets, ignore sh and pt conditions
+                    if pt is None and sh is False:
+                        return item
+                    # For special pets, check sh and pt
+                    elif item.get("configData", {}).get("pt") == pt and item.get("configData", {}).get("sh") == sh:
                         return item
     else:
         print(f"Error searching RAP API: {response.status_code}")
@@ -48,7 +52,11 @@ def search_exist_api(base_name, sh, pt):
         if data.get("status") == "ok":
             for item in data.get("data", []):
                 if item.get("configData", {}).get("id") == base_name:
-                    if item.get("configData", {}).get("pt") == pt and item.get("configData", {}).get("sh") == sh:
+                    # For normal pets, ignore sh and pt conditions
+                    if pt is None and sh is False:
+                        return item
+                    # For special pets, check sh and pt
+                    elif item.get("configData", {}).get("pt") == pt and item.get("configData", {}).get("sh") == sh:
                         return item
     else:
         print(f"Error searching Exist API: {response.status_code}")
