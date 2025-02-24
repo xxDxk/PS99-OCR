@@ -5,24 +5,28 @@ COLLECTION_API_URL = "https://ps99.biggamesapi.io/api/collection/Pets"
 EXISTS_API_URL = "https://ps99.biggamesapi.io/api/exists"
 RAP_API_URL = "https://ps99.biggamesapi.io/api/rap"
 
+def capitalize_pet_name(pet_name):
+    """Capitalize the first letter of each word in the pet name."""
+    return " ".join(word.capitalize() for word in pet_name.split())
+
 def parse_pet_name(pet_name):
-    parts = pet_name.split()
+    parts = pet_name.lower().split()  # Convert input to lowercase for case-insensitive parsing
     sh = False
     pt = None
     
     # Check for shiny, golden, or rainbow
-    if "Shiny" in parts:
+    if "shiny" in parts:
         sh = True
-        parts.remove("Shiny")
-    if "Golden" in parts:
+        parts.remove("shiny")
+    if "golden" in parts:
         pt = 1
-        parts.remove("Golden")
-    if "Rainbow" in parts:
+        parts.remove("golden")
+    if "rainbow" in parts:
         pt = 2
-        parts.remove("Rainbow")
+        parts.remove("rainbow")
     
-    # Reconstruct the base pet name
-    base_name = " ".join(parts)
+    # Reconstruct the base pet name and capitalize it
+    base_name = capitalize_pet_name(" ".join(parts))
     
     return base_name, sh, pt
 
@@ -33,13 +37,21 @@ def search_rap_api(base_name, sh, pt):
         data = response.json()
         if data.get("status") == "ok":
             for item in data.get("data", []):
-                if item.get("configData", {}).get("id") == base_name:
-                    # For normal pets, ignore sh and pt conditions
-                    if pt is None and sh is False:
-                        return item
-                    # For special pets, check sh and pt
-                    elif item.get("configData", {}).get("pt") == pt and item.get("configData", {}).get("sh") == sh:
-                        return item
+                config_data = item.get("configData", {})
+                if config_data.get("id") == base_name:
+                    # Check conditions based on pt and sh
+                    if pt is None and not sh:  # Normal pet
+                        if "pt" not in config_data and "sh" not in config_data:
+                            return item
+                    elif pt is not None and sh:  # Golden Shiny or Rainbow Shiny
+                        if config_data.get("pt") == pt and config_data.get("sh") == sh:
+                            return item
+                    elif pt is not None and not sh:  # Golden or Rainbow
+                        if config_data.get("pt") == pt and "sh" not in config_data:
+                            return item
+                    elif pt is None and sh:  # Shiny only
+                        if config_data.get("sh") == sh and "pt" not in config_data:
+                            return item
     else:
         print(f"Error searching RAP API: {response.status_code}")
     return None
@@ -51,13 +63,21 @@ def search_exist_api(base_name, sh, pt):
         data = response.json()
         if data.get("status") == "ok":
             for item in data.get("data", []):
-                if item.get("configData", {}).get("id") == base_name:
-                    # For normal pets, ignore sh and pt conditions
-                    if pt is None and sh is False:
-                        return item
-                    # For special pets, check sh and pt
-                    elif item.get("configData", {}).get("pt") == pt and item.get("configData", {}).get("sh") == sh:
-                        return item
+                config_data = item.get("configData", {})
+                if config_data.get("id") == base_name:
+                    # Check conditions based on pt and sh
+                    if pt is None and not sh:  # Normal pet
+                        if "pt" not in config_data and "sh" not in config_data:
+                            return item
+                    elif pt is not None and sh:  # Golden Shiny or Rainbow Shiny
+                        if config_data.get("pt") == pt and config_data.get("sh") == sh:
+                            return item
+                    elif pt is not None and not sh:  # Golden or Rainbow
+                        if config_data.get("pt") == pt and "sh" not in config_data:
+                            return item
+                    elif pt is None and sh:  # Shiny only
+                        if config_data.get("sh") == sh and "pt" not in config_data:
+                            return item
     else:
         print(f"Error searching Exist API: {response.status_code}")
     return None
